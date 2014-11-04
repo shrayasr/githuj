@@ -1,6 +1,8 @@
 (ns githuj.core
   (:gen-class :main true))
 
+(require '[githuj.github :as gj])
+
 (defn parse-args-index
   [cmd-args]
   (when (>= (count cmd-args) 1)
@@ -31,7 +33,8 @@
   [& args]
   (def parsed-args (parse-args args))
   (if parsed-args
-    (println (str "parsed! " parsed-args))
+    (do (println (str "parsed! " parsed-args))
+        (gj/some-method))
     (println (str "Required arguments not passed. RTFM"))))
 
 
